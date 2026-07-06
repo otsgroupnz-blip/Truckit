@@ -543,4 +543,63 @@ async function sendBooking(payload){
     return r.ok;
   }catch(e){return false;}
 }
-$("bookbtn").addEventListener("click",async()
+$("bookbtn").addEventListener("click",async()=>{
+  const q=quote();
+  const btn=$("bookbtn");
+  if(!q&&!manualMode)return;
+
+  if(!detailsOpen){
+    detailsOpen=true;
+    $("dform").classList.add("show");
+    btn.textContent=manualMode?"Send quote request":"Confirm booking";
+    $("dform").scrollIntoView({behavior:"smooth",block:"start"});
+    return;
+  }
+
+  const okN=fieldOk("c-name"),okP=fieldOk("c-phone"),okE=fieldOk("c-email");
+  if(!okN||!okP||!okE)return;
+
+  const w=+$("wt").value;
+  const payload={
+    _subject:(manualMode?"QUOTE REQUEST":"BOOKING")+" — "+machineName()+" · "+$("from").value+" → "+$("to").value,
+    type:manualMode?"Manual quote request":"Instant booking",
+    name:$("c-name").value.trim(),
+    phone:$("c-phone").value.trim(),
+    email:$("c-email").value.trim(),
+    machine:machineName(),
+    extras:extrasList().join(", ")||"None",
+    weight:(w%1?w.toFixed(1):w)+" t",
+    pickup:$("from").value,
+    dropoff:$("to").value,
+    zones:$("zonepill").textContent,
+    price:q?("$"+q.p.toFixed(2)+" +GST ("+CATS[q.ci].lbl+")"):"POA — manual quote",
+    notes:$("c-notes").value.trim()||"None"
+  };
+  btn.textContent="Sending…";
+  const sent=await sendBooking(payload);
+  if(!sent){
+    const body="New "+payload.type+"%0A%0A"+Object.entries(payload).filter(([k])=>k!=="_subject").map(([k,v])=>k+": "+v).join("%0A");
+    location.href="mailto:"+BOOK_EMAIL+"?subject="+encodeURIComponent(payload._subject)+"&body="+body;
+  }
+  const route=($("from").value.split(",")[0]||"Pickup")+" → "+($("to").value.split(",")[0]||"Dropoff");
+  if(manualMode){
+    btn.textContent="Quote request sent — we'll be in touch";
+    btn.style.background="#854F0B";
+    setTimeout(()=>{quote();btn.style.background="";$("dform").classList.remove("show");detailsOpen=false;},2200);
+    return;
+  }
+  lastQuote="$"+q.p.toFixed(2);
+  lastRoute=route;
+  $("tk-title").textContent=machineName().split(" /")[0]+" · "+payload.weight;
+  $("tk-route").textContent=route;
+  $("track-empty").style.display="none";
+  $("track-live").style.display="block";
+  stage=0;paintTrack();
+  btn.textContent="Booked";btn.style.background="#0F6E56";
+  setTimeout(()=>{quote();btn.textContent="Book transport";btn.style.background="";$("dform").classList.remove("show");detailsOpen=false;show("track");},900);
+});
+quote();
+</script>
+
+
+</body></html>

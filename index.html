@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- saved from url=(0058)file:///C:/Users/brayden/Downloads/truckit-test-app_6.html -->
+<!-- saved from url=(0058)file:///C:/Users/brayden/Downloads/truckit-test-app_7.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>TruckIt — test app</title>
-<link rel="stylesheet" href="./TruckIt — test app_files/tabler-icons.min.css">
+<link rel="stylesheet" href="./index.html_files/tabler-icons.min.css">
 <style>
 :root{
   --red:#A32D2D; --red-dark:#791F1F; --red-deep:#501313; --red-tint:#FCEBEB;
@@ -32,6 +32,17 @@ body{
 h1{font-size:22px;font-weight:600;margin:0}
 .sub{font-size:13px;color:var(--ink-2);margin:0}
 .tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+select.msel{width:100%;margin-top:8px;padding:13px 14px;font-size:15px;font-family:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line-strong);border-radius:14px;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'><path d='M6 9l6 6 6-6'/></svg>");background-repeat:no-repeat;background-position:right 14px center}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{border:1px solid var(--line-strong);border-radius:20px;padding:8px 14px;font-size:13.5px;color:var(--ink-2);cursor:pointer;user-select:none}
+.chip.on{background:var(--red-tint);border-color:var(--red);color:var(--red-deep);font-weight:600}
+.dform{display:none;margin-top:14px}
+.dform.show{display:block}
+.frow{margin-top:10px}
+.frow label{display:block;font-size:12px;color:var(--ink-3);margin-bottom:4px}
+.frow input,.frow textarea{width:100%;padding:12px 14px;font-size:15px;font-family:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line-strong);border-radius:12px;outline:none}
+.frow input.err,.frow textarea.err{border-color:var(--red)}
+.frow textarea{resize:none;height:64px}
 .mtile{border:1px solid var(--line);border-radius:14px;padding:14px 12px;cursor:pointer;background:var(--card)}
 .mtile i{font-size:24px;color:var(--ink-2)}
 .mtile p{margin:6px 0 0;font-size:13.5px;color:var(--ink-2)}
@@ -116,11 +127,28 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;heigh
     </div>
 
     <p class="sub" style="margin-top:16px">What are you moving?</p>
-    <div class="tiles">
-      <div class="mtile on" data-m="exc"><i class="ti ti-backhoe"></i><p>Excavator / digger</p></div>
-      <div class="mtile" data-m="fork"><i class="ti ti-forklift"></i><p>Forklift / telehandler</p></div>
-      <div class="mtile" data-m="trac"><i class="ti ti-tractor"></i><p>Tractor / ag gear</p></div>
-      <div class="mtile" data-m="oth"><i class="ti ti-crane"></i><p>Other machinery</p></div>
+    <select class="msel" id="machine">
+      <option value="Excavator / digger" selected="">Excavator / digger</option>
+      <option value="Bulldozer">Bulldozer</option>
+      <option value="Grader">Grader</option>
+      <option value="Roller / compactor">Roller / compactor</option>
+      <option value="Skid steer / bobcat">Skid steer / bobcat</option>
+      <option value="Telehandler">Telehandler</option>
+      <option value="Forklift">Forklift</option>
+      <option value="Tractor / ag gear">Tractor / ag gear</option>
+      <option value="Scissor lift / EWP">Scissor lift / EWP</option>
+      <option value="Truck / heavy vehicle">Truck / heavy vehicle</option>
+      <option value="Container / portable building">Container / portable building</option>
+      <option value="Other machinery">Other machinery</option>
+    </select>
+    <p class="sub" style="margin-top:14px">Extras going with it</p>
+    <div class="chips" id="extras">
+      <span class="chip">Bucket(s)</span>
+      <span class="chip">Breaker / hammer</span>
+      <span class="chip">Auger</span>
+      <span class="chip">Forks / attachments</span>
+      <span class="chip">Blade</span>
+      <span class="chip">Other</span>
     </div>
 
     <div class="addr">
@@ -158,6 +186,14 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;heigh
         <p class="q1" id="qnote" style="margin-top:3px;display:none"></p>
       </div>
       <span class="pill teal" id="zonepill" style="display: inline-block;">Zone 1 → 2</span>
+    </div>
+
+    <div class="dform" id="dform">
+      <p class="sub" style="margin-top:2px">Your details</p>
+      <div class="frow"><label for="c-name">Name</label><input id="c-name" placeholder="Dave Matthews" autocomplete="name"></div>
+      <div class="frow"><label for="c-phone">Phone</label><input id="c-phone" type="tel" placeholder="021 123 4567" autocomplete="tel"></div>
+      <div class="frow"><label for="c-email">Email</label><input id="c-email" type="email" placeholder="dave@company.co.nz" autocomplete="email"></div>
+      <div class="frow"><label for="c-notes">Anything else we should know</label><textarea id="c-notes" placeholder="Site access, timing, machine model…"></textarea></div>
     </div>
 
     <button class="cta" id="bookbtn">Book transport</button>
@@ -230,9 +266,10 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;heigh
 </div>
 
 <script>
-const M={exc:{n:"Excavator"},fork:{n:"Telehandler"},trac:{n:"Tractor"},oth:{n:"Machinery"}};
-let sel="exc";
+const BOOK_EMAIL="brayden@otsgroup.co.nz";
 const $=id=>document.getElementById(id);
+const machineName=()=>$("machine").value;
+const extrasList=()=>[...document.querySelectorAll("#extras .chip.on")].map(c=>c.textContent);
 
 const Z1=["albany","alfriston","arch hill","ardmore","avondale","balmoral","bayswater","beach haven","belmont","birkdale","birkenhead","blockhouse bay","botany downs","brookby","browns bay","bucklands beach","campbells bay","castor bay","chatswood","chelsea","cheltenham","clendon","clover park","cockle bay","conifer grove","crown hill","dannemora","dairy flat","devonport","drury","east coast bays","east tamaki","eastern beach","eden terrace","edgewater","ellerslie","epsom","farm cove","favona","flat bush","forrest hill","freemans bay","french bay","glen eden","glen innes","glendene","glendowie","glenfield","grafton","green bay","greenhithe","greenlane","greenwoods","grey lynn","half moon bay","hauraki","henderson","herald island","herne bay","highbury","highland park","hill park","hillcrest","hillsborough","hobsonville","homai","howick","hunters corner","kauri park","kelston","kingsland","kohimarama","konini","laingholm","lincoln","long bay","lynfield","manukau","manurewa","marlborough","massey","meadowbank","mellons bay","middlemore","milford","mission bay","morningside","mount albert","mount eden","mount roskill","mt albert","mt eden","mt roskill","mt wellington","mount wellington","murrays bay","narrow neck","new lynn","new windsor","newmarket","new market","newton","north harbour","north park","northcote","northcross","one tree hill","onehunga","orakei","oranga","oratia","otahuhu","otara","owairaka","pahurehure","pakuranga","panmure","papakura","papatoetoe","parnell","penrose","mairangi bay","mangere","point chevalier","pt chevalier","point england","ponsonby","puhinui","ranui","ramarama","red hill","remuera","rosebank","rosehill","rothesay bay","royal heights","royal oak","sandringham","shelly park","st heliers","saint heliers","st johns","saint johns","st lukes","saint lukes","st marys bay","stanley bay","sunnybrae","sunnyhills","sunnynook","sunnyvale","swanson","sylvia park","takanini","takapuna","tamaki","te atatu","te papapa","the gardens","the palms","three kings","titirangi","torbay","totara heights","unsworth heights","waiake","waikowhai","wairau park","waterview","whenuapai","wesley","west harbour","western springs","westlake","westmere","weymouth","whitford","wiri","karaka","hingaia","okura","auckland central","auckland cbd","city centre"];
 const Z2=["arkles bay","beachlands","big manly","bombay","clevedon","coatesville","gulf harbour","gulf habour","hatfields beach","hobbs bay","huia","kumeu","little huia","little manly","maraetai","matakatia bay","okoromai bay","orewa","paerata","paremoremo","pukekohe","red beach","red vale","riverhead","silverdale","stillwater","taupaki","te hihi","tindalls beach","waitakere township","whangaparaoa","drury south"];
@@ -305,10 +342,8 @@ function quote(){
   btn.textContent="Book transport";
   return {p,w,ci,zf,zt};
 }
-document.querySelectorAll(".mtile").forEach(t=>t.addEventListener("click",()=>{
-  document.querySelectorAll(".mtile").forEach(x=>x.classList.remove("on"));
-  t.classList.add("on");sel=t.dataset.m;quote();
-}));
+$("machine").addEventListener("change",quote);
+document.querySelectorAll("#extras .chip").forEach(c=>c.addEventListener("click",()=>c.classList.toggle("on")));
 $("wt").addEventListener("input",quote);
 $("from").addEventListener("input",quote);
 $("to").addEventListener("input",quote);
@@ -443,33 +478,83 @@ function paintTrack(){
   if(stage>=4){
     const row=document.createElement("div");
     row.className="jrow";
-    row.innerHTML='<div><h4>'+M[sel].n+' · '+lastRoute+'</h4><p>Today · '+lastQuote+' +GST</p></div><span class="pill teal">Done</span>';
+    row.innerHTML='<div><h4>'+machineName().split(" /")[0]+' · '+lastRoute+'</h4><p>Today · '+lastQuote+' +GST</p></div><span class="pill teal">Done</span>';
     $("jobs-list").prepend(row);
     const jc=$("st-jobs");jc.textContent=+jc.textContent+1;
   }
 }
 $("tk-adv").addEventListener("click",()=>{stage++;paintTrack();});
-$("bookbtn").addEventListener("click",()=>{
+
+let detailsOpen=false;
+function fieldOk(id){
+  const el=$(id),ok=el.value.trim().length>1;
+  el.classList.toggle("err",!ok);
+  return ok;
+}
+async function sendBooking(payload){
+  try{
+    const r=await fetch("https://formsubmit.co/ajax/"+BOOK_EMAIL,{
+      method:"POST",
+      headers:{"Content-Type":"application/json","Accept":"application/json"},
+      body:JSON.stringify(payload)
+    });
+    return r.ok;
+  }catch(e){return false;}
+}
+$("bookbtn").addEventListener("click",async()=>{
   const q=quote();
-  const route=($("from").value.split(",")[0]||"Pickup")+" → "+($("to").value.split(",")[0]||"Dropoff");
   const btn=$("bookbtn");
-  if(manualMode){
-    btn.textContent="Quote requested — we'll be in touch";
-    btn.style.background="#854F0B";
-    setTimeout(()=>{quote();btn.style.background="";},1800);
+  if(!q&&!manualMode)return;
+
+  if(!detailsOpen){
+    detailsOpen=true;
+    $("dform").classList.add("show");
+    btn.textContent=manualMode?"Send quote request":"Confirm booking";
+    $("dform").scrollIntoView({behavior:"smooth",block:"start"});
     return;
   }
-  if(!q)return;
-  const w=q.w%1?q.w.toFixed(1):q.w;
+
+  const okN=fieldOk("c-name"),okP=fieldOk("c-phone"),okE=fieldOk("c-email");
+  if(!okN||!okP||!okE)return;
+
+  const w=+$("wt").value;
+  const payload={
+    _subject:(manualMode?"QUOTE REQUEST":"BOOKING")+" — "+machineName()+" · "+$("from").value+" → "+$("to").value,
+    type:manualMode?"Manual quote request":"Instant booking",
+    name:$("c-name").value.trim(),
+    phone:$("c-phone").value.trim(),
+    email:$("c-email").value.trim(),
+    machine:machineName(),
+    extras:extrasList().join(", ")||"None",
+    weight:(w%1?w.toFixed(1):w)+" t",
+    pickup:$("from").value,
+    dropoff:$("to").value,
+    zones:$("zonepill").textContent,
+    price:q?("$"+q.p.toFixed(2)+" +GST ("+CATS[q.ci].lbl+")"):"POA — manual quote",
+    notes:$("c-notes").value.trim()||"None"
+  };
+  btn.textContent="Sending…";
+  const sent=await sendBooking(payload);
+  if(!sent){
+    const body="New "+payload.type+"%0A%0A"+Object.entries(payload).filter(([k])=>k!=="_subject").map(([k,v])=>k+": "+v).join("%0A");
+    location.href="mailto:"+BOOK_EMAIL+"?subject="+encodeURIComponent(payload._subject)+"&body="+body;
+  }
+  const route=($("from").value.split(",")[0]||"Pickup")+" → "+($("to").value.split(",")[0]||"Dropoff");
+  if(manualMode){
+    btn.textContent="Quote request sent — we'll be in touch";
+    btn.style.background="#854F0B";
+    setTimeout(()=>{quote();btn.style.background="";$("dform").classList.remove("show");detailsOpen=false;},2200);
+    return;
+  }
   lastQuote="$"+q.p.toFixed(2);
   lastRoute=route;
-  $("tk-title").textContent=M[sel].n+" · "+w+" t";
+  $("tk-title").textContent=machineName().split(" /")[0]+" · "+payload.weight;
   $("tk-route").textContent=route;
   $("track-empty").style.display="none";
   $("track-live").style.display="block";
   stage=0;paintTrack();
   btn.textContent="Booked";btn.style.background="#0F6E56";
-  setTimeout(()=>{quote();btn.style.background="";show("track");},700);
+  setTimeout(()=>{quote();btn.textContent="Book transport";btn.style.background="";$("dform").classList.remove("show");detailsOpen=false;show("track");},900);
 });
 quote();
 </script>

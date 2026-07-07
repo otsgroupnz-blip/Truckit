@@ -1,21 +1,24 @@
 <!DOCTYPE html>
-<!-- saved from url=(0058)file:///C:/Users/brayden/Downloads/truckit-test-app_9.html -->
+<!-- saved from url=(0045)file:///C:/Users/brayden/Downloads/index.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>TruckIt — test app</title>
+<meta name="apple-mobile-web-app-title" content="Haulwell">
+<title>Haulwell — machinery transport, priced instantly</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 64 64&#39;%3E%3Crect width=&#39;64&#39; height=&#39;64&#39; rx=&#39;14&#39; fill=&#39;%231C1B16&#39;/%3E%3Crect x=&#39;14&#39; y=&#39;14&#39; width=&#39;8&#39; height=&#39;36&#39; rx=&#39;2&#39; fill=&#39;%23D96D14&#39;/%3E%3Crect x=&#39;42&#39; y=&#39;14&#39; width=&#39;8&#39; height=&#39;36&#39; rx=&#39;2&#39; fill=&#39;%23D96D14&#39;/%3E%3Cpath d=&#39;M14 40 L50 26 L50 33 L14 47 Z&#39; fill=&#39;%23D96D14&#39;/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="file:///C:/Users/brayden/Downloads/apple-touch-icon.png">
 <link rel="stylesheet" href="./index.html_files/tabler-icons.min.css">
 <style>
 :root{
-  --red:#A32D2D; --red-dark:#791F1F; --red-deep:#501313; --red-tint:#FCEBEB;
+  --red:#C2570E; --red-dark:#8A3E07; --red-deep:#5C2903; --red-tint:#FBEEDF;
   --teal-tint:#E1F5EE; --teal-dark:#085041;
   --amber-tint:#FAEEDA; --amber-dark:#633806;
   --blue-tint:#E6F1FB; --blue-dark:#0C447C;
-  --ink:#1c1c1a; --ink-2:#5f5e5a; --ink-3:#8a8983;
-  --line:rgba(0,0,0,0.10); --line-strong:rgba(0,0,0,0.18);
-  --card:#ffffff; --page:#f3f1ec;
+  --ink:#1c1b16; --ink-2:#605d54; --ink-3:#8b887d;
+  --line:rgba(30,25,10,0.12); --line-strong:rgba(30,25,10,0.2);
+  --card:#ffffff; --page:#f4f1ea;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0;height:100%}
@@ -108,9 +111,9 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;heigh
 .navb.on{color:var(--red)}
 .navb.on p{font-weight:600}
 @media (prefers-color-scheme: dark){
-  :root{--ink:#efeeea;--ink-2:#b3b1aa;--ink-3:#84837d;--line:rgba(255,255,255,0.14);--line-strong:rgba(255,255,255,0.25);--card:#1d1d1b;--page:#141412;
-  --red-tint:#3a1414;--teal-tint:#0d2e25;--teal-dark:#9FE1CB;--amber-tint:#332208;--amber-dark:#FAC775;--blue-tint:#0e2338;--blue-dark:#B5D4F4;--red-dark:#F09595;--red-deep:#F7C1C1}
-  input[type=range]::-webkit-slider-thumb{background:#2c2c29}
+  :root{--ink:#efede7;--ink-2:#b5b1a6;--ink-3:#86837a;--line:rgba(255,250,235,0.14);--line-strong:rgba(255,250,235,0.25);--card:#1d1c18;--page:#141310;
+  --red:#E07E28;--red-tint:#3a2410;--teal-tint:#0d2e25;--teal-dark:#9FE1CB;--amber-tint:#332208;--amber-dark:#FAC775;--blue-tint:#0e2338;--blue-dark:#B5D4F4;--red-dark:#F2A566;--red-deep:#F8CBA2}
+  input[type=range]::-webkit-slider-thumb{background:#2c2a24}
 }
 </style>
 </head>
@@ -120,11 +123,16 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;heigh
   <div class="screen on" id="scr-book">
     <div style="display:flex;justify-content:space-between;align-items:center">
       <div>
-        <p class="sub">Gidday, Bray</p>
-        <h1>Move some gear</h1>
+        <div style="display:flex;align-items:center;gap:9px">
+          <svg width="30" height="30" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#1C1B16"></rect><rect x="14" y="14" width="8" height="36" rx="2" fill="#D96D14"></rect><rect x="42" y="14" width="8" height="36" rx="2" fill="#D96D14"></rect><path d="M14 40 L50 26 L50 33 L14 47 Z" fill="#D96D14"></path></svg>
+          <span style="font-size:21px;font-weight:700;letter-spacing:-0.3px">Haulwell</span>
+        </div>
+        <p class="sub" style="margin-top:5px">Machinery transport, priced instantly</p>
       </div>
       <div class="avatar">BH</div>
     </div>
+
+    <h1 style="margin-top:16px">Move some gear</h1>
 
     <p class="sub" style="margin-top:16px">What are you moving?</p>
     <select class="msel" id="machine">
@@ -183,6 +191,10 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;heigh
         <option value="Other machinery">Other machinery</option>
       </optgroup>
     </select>
+    <div class="frow" style="margin-top:10px">
+      <label for="c-make">Make &amp; model</label>
+      <input id="c-make" placeholder="e.g. Cat 320, Kubota KX080" autocomplete="off">
+    </div>
     <p class="sub" style="margin-top:14px">Extras going with it</p>
     <div class="chips" id="extras">
       <span class="chip">Bucket(s)</span>
@@ -384,7 +396,12 @@ function quote(){
   btn.textContent="Book transport";
   return {p,w,ci,zf,zt};
 }
-$("machine").addEventListener("change",quote);
+const HINTS={"Earthmoving":"e.g. Cat 320, Kubota KX080","Compaction":"e.g. Dynapac CA250, Wacker RD27","Access / EWP":"e.g. Genie GS-2632, JLG 450AJ","Lift & shift":"e.g. Toyota 8FG25, Merlo P40.17","Agriculture":"e.g. John Deere 6120M","Site power & equipment":"e.g. 100 kVA genset","Portable buildings":"e.g. 20 ft container","Vehicles":"e.g. Toyota Hilux 2019","Other":"Make / model / description"};
+$("machine").addEventListener("change",()=>{
+  const g=$("machine").selectedOptions[0].parentElement.label||"Other";
+  $("c-make").placeholder=HINTS[g]||HINTS["Other"];
+  quote();
+});
 document.querySelectorAll("#extras .chip").forEach(c=>c.addEventListener("click",()=>c.classList.toggle("on")));
 $("wt").addEventListener("input",quote);
 $("from").addEventListener("input",quote);
@@ -567,6 +584,7 @@ $("bookbtn").addEventListener("click",async()=>{
     phone:$("c-phone").value.trim(),
     email:$("c-email").value.trim(),
     machine:machineName(),
+    make_model:$("c-make").value.trim()||"Not specified",
     extras:extrasList().join(", ")||"None",
     weight:(w%1?w.toFixed(1):w)+" t",
     pickup:$("from").value,

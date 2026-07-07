@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0047)file:///C:/Users/brayden/Downloads/index_3.html -->
+<!-- saved from url=(0047)file:///C:/Users/brayden/Downloads/index_4.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -46,6 +46,12 @@ select.msel{width:100%;margin-top:8px;padding:13px 14px;font-size:15px;font-fami
 .frow input,.frow textarea{width:100%;padding:12px 14px;font-size:15px;font-family:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line-strong);border-radius:12px;outline:none}
 .frow input.err,.frow textarea.err{border-color:var(--red)}
 .frow textarea{resize:none;height:64px}
+.pthumbs{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.pthumb{position:relative;width:72px;height:72px;border-radius:10px;overflow:hidden;border:1px solid var(--line-strong)}
+.pthumb img{width:100%;height:100%;object-fit:cover;display:block}
+.pthumb .px{position:absolute;top:2px;right:2px;width:20px;height:20px;border-radius:50%;background:rgba(0,0,0,0.65);color:#fff;font-size:13px;line-height:20px;text-align:center;cursor:pointer}
+.paddbtn{width:72px;height:72px;border-radius:10px;border:1.5px dashed var(--line-strong);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--ink-3);cursor:pointer;font-size:11px;gap:2px}
+.paddbtn i{font-size:20px}
 .mtile{border:1px solid var(--line);border-radius:14px;padding:14px 12px;cursor:pointer;background:var(--card)}
 .mtile i{font-size:24px;color:var(--ink-2)}
 .mtile p{margin:6px 0 0;font-size:13.5px;color:var(--ink-2)}
@@ -248,6 +254,13 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;heigh
       <div class="frow"><label for="c-phone">Phone</label><input id="c-phone" type="tel" placeholder="021 123 4567" autocomplete="tel"></div>
       <div class="frow"><label for="c-email">Email</label><input id="c-email" type="email" placeholder="dave@company.co.nz" autocomplete="email"></div>
       <div class="frow"><label for="c-notes">Anything else we should know</label><textarea id="c-notes" placeholder="Site access, timing, machine model…"></textarea></div>
+      <div class="frow">
+        <label>Photos of your gear (optional, up to 3)</label>
+        <div class="pthumbs" id="pthumbs">
+          <div class="paddbtn" id="paddbtn"><i class="ti ti-camera"></i>Add</div>
+        </div>
+        <input type="file" id="pfile" accept="image/*" multiple="" style="display:none">
+      </div>
     </div>
 
     <button class="cta" id="bookbtn">Book transport</button>
@@ -285,10 +298,11 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;heigh
 
   <div class="screen" id="scr-jobs">
     <h1>Your jobs</h1>
-    <div style="margin-top:8px" id="jobs-list">
-      <div class="jrow"><div><h4>20 t excavator · East Tamaki → Pukekohe</h4><p>3 Jul · $940 +GST</p></div><span class="pill teal">Done</span></div>
-      <div class="jrow"><div><h4>Telehandler · Penrose → Albany</h4><p>28 Jun · $520 +GST</p></div><span class="pill teal">Done</span></div>
-      <div class="jrow"><div><h4>Roller · Onehunga → Hamilton</h4><p>21 Jun · $1,180 +GST</p></div><span class="pill teal">Done</span></div>
+    <div style="margin-top:8px" id="jobs-list"></div>
+    <div class="card empty" id="jobs-empty" style="display: block;">
+      <i class="ti ti-receipt"></i>
+      <h3>No jobs yet</h3>
+      <p>Your bookings and their status will show here.</p>
     </div>
   </div>
 
@@ -303,13 +317,13 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;heigh
       <i class="ti ti-chevron-down" id="acct-chev" style="font-size:17px;color:var(--ink-3)"></i>
     </div>
     <div class="stats">
-      <div class="stat"><p>Jobs this month</p><h3 id="st-jobs">4</h3></div>
-      <div class="stat"><p>Spend this month</p><h3 id="st-spend">$3,388</h3></div>
+      <div class="stat"><p>Jobs this month</p><h3 id="st-jobs">0</h3></div>
+      <div class="stat"><p>Spend this month</p><h3 id="st-spend">$0</h3></div>
     </div>
     <div style="margin-top:12px">
       <div class="jrow"><span style="font-size:14.5px"><i class="ti ti-credit-card" style="font-size:18px;vertical-align:-3px;margin-right:10px;color:var(--ink-2)"></i>Payment methods</span><i class="ti ti-chevron-right" style="font-size:17px;color:var(--ink-3)"></i></div>
       <div class="jrow"><span style="font-size:14.5px"><i class="ti ti-file-invoice" style="font-size:18px;vertical-align:-3px;margin-right:10px;color:var(--ink-2)"></i>Invoices and PODs</span><i class="ti ti-chevron-right" style="font-size:17px;color:var(--ink-3)"></i></div>
-      <div class="jrow"><span style="font-size:14.5px"><i class="ti ti-headset" style="font-size:18px;vertical-align:-3px;margin-right:10px;color:var(--ink-2)"></i>Support</span><i class="ti ti-chevron-right" style="font-size:17px;color:var(--ink-3)"></i></div>
+      <div class="jrow" onclick="location.href=&#39;mailto:brayden@otsgroup.co.nz?subject=Haulwell support&#39;" style="cursor:pointer"><span style="font-size:14.5px"><i class="ti ti-headset" style="font-size:18px;vertical-align:-3px;margin-right:10px;color:var(--ink-2)"></i>Support</span><i class="ti ti-chevron-right" style="font-size:17px;color:var(--ink-3)"></i></div>
     </div>
 
     <div id="adm" style="display:none;margin-top:16px">
@@ -541,7 +555,7 @@ function show(tab){
   Object.entries(screens).forEach(([k,id])=>$(id).classList.toggle("on",k===tab));
   document.querySelectorAll(".navb").forEach(b=>b.classList.toggle("on",b.dataset.t===tab));
 }
-document.querySelectorAll(".navb").forEach(b=>b.addEventListener("click",()=>{show(b.dataset.t);if(b.dataset.t==="track")refreshStatus();}));
+document.querySelectorAll(".navb").forEach(b=>b.addEventListener("click",()=>{show(b.dataset.t);if(b.dataset.t==="track"||b.dataset.t==="jobs")refreshStatus();}));
 
 let stage=0, lastQuote="$0.00", lastRoute="";
 const badges=[["Received","amber"],["Truck confirmed","blue"],["Scheduled","blue"],["In transit","blue"],["Delivered","teal"]];
@@ -560,8 +574,28 @@ function makeRef(){
   return r;
 }
 const STAGE_MAP={"Received":0,"Truck confirmed":1,"Pickup scheduled":2,"In transit":3,"Delivered":4};
-function saveJob(j){try{localStorage.setItem("hw_job",JSON.stringify(j));}catch(e){}}
-function loadJob(){try{return JSON.parse(localStorage.getItem("hw_job"));}catch(e){return null;}}
+const JOB_PILL={"Received":["Booked","blue"],"Truck confirmed":["Confirmed","blue"],"Pickup scheduled":["Scheduled","blue"],"In transit":["In transit","blue"],"Delivered":["Done","teal"],"Quote sent":["Quote sent","amber"],"Cancelled":["Cancelled","amber"]};
+function loadJobs(){try{return JSON.parse(localStorage.getItem("hw_jobs"))||[];}catch(e){return [];}}
+function saveJobs(a){try{localStorage.setItem("hw_jobs",JSON.stringify(a));}catch(e){}}
+function addJob(j){const a=loadJobs();a.unshift(j);saveJobs(a);renderJobs();}
+function renderJobs(){
+  const a=loadJobs();
+  $("jobs-empty").style.display=a.length?"none":"block";
+  const list=$("jobs-list");
+  list.innerHTML="";
+  a.forEach(j=>{
+    const[pl,pc]=JOB_PILL[j.status]||["Booked","blue"];
+    const row=document.createElement("div");
+    row.className="jrow";
+    row.innerHTML='<div><h4>'+j.title+' · '+j.route+'</h4><p>'+j.date+' · '+j.price+' +GST · '+j.ref+'</p></div><span class="pill '+pc+'">'+pl+'</span>';
+    list.appendChild(row);
+  });
+  const now=new Date(),m=now.getMonth(),y=now.getFullYear();
+  const monthJobs=a.filter(j=>{const d=new Date(j.ts||0);return d.getMonth()===m&&d.getFullYear()===y;});
+  $("st-jobs").textContent=monthJobs.length;
+  const spend=monthJobs.reduce((s,j)=>s+(parseFloat(String(j.price).replace(/[^0-9.]/g,""))||0),0);
+  $("st-spend").textContent="$"+spend.toLocaleString(undefined,{maximumFractionDigits:0});
+}
 function showJob(j){
   $("tk-title").textContent=j.title;
   $("tk-route").textContent=j.route;
@@ -570,20 +604,65 @@ function showJob(j){
   $("track-live").style.display="block";
 }
 async function refreshStatus(){
-  const j=loadJob();
-  if(!j)return;
-  showJob(j);
-  try{
-    const r=await fetch(SHEET_API+"?ref="+encodeURIComponent(j.ref));
-    const d=await r.json();
-    if(d.ok&&d.status){
-      if(d.status==="Cancelled"){
-        const badge=$("tk-badge");badge.textContent="Cancelled";badge.className="pill amber";
-        return;
-      }
-      if(d.status in STAGE_MAP){stage=STAGE_MAP[d.status];paintTrack();}
-    }
-  }catch(e){}
+  const a=loadJobs();
+  if(!a.length){renderJobs();return;}
+  showJob(a[0]);
+  if(a[0].status in STAGE_MAP){stage=STAGE_MAP[a[0].status];paintTrack();}
+  let changed=false;
+  for(const j of a){
+    if(j.status==="Delivered"||j.status==="Cancelled")continue;
+    try{
+      const r=await fetch(SHEET_API+"?ref="+encodeURIComponent(j.ref));
+      const d=await r.json();
+      if(d.ok&&d.status&&d.status!==j.status){j.status=d.status;changed=true;}
+    }catch(e){}
+  }
+  if(changed)saveJobs(a);
+  renderJobs();
+  const top=a[0];
+  if(top.status==="Cancelled"){
+    const badge=$("tk-badge");badge.textContent="Cancelled";badge.className="pill amber";
+  }else if(top.status in STAGE_MAP){
+    stage=STAGE_MAP[top.status];paintTrack();
+  }
+}
+
+let photos=[];
+$("paddbtn").addEventListener("click",()=>$("pfile").click());
+$("pfile").addEventListener("change",async e=>{
+  for(const f of [...e.target.files]){
+    if(photos.length>=3)break;
+    try{photos.push(await compressImg(f));}catch(err){}
+  }
+  e.target.value="";
+  renderThumbs();
+});
+function compressImg(file){
+  return new Promise((res,rej)=>{
+    const img=new Image();
+    img.onload=()=>{
+      const max=1280,sc=Math.min(1,max/Math.max(img.width,img.height));
+      const c=document.createElement("canvas");
+      c.width=Math.round(img.width*sc);c.height=Math.round(img.height*sc);
+      c.getContext("2d").drawImage(img,0,0,c.width,c.height);
+      URL.revokeObjectURL(img.src);
+      res(c.toDataURL("image/jpeg",0.7));
+    };
+    img.onerror=rej;
+    img.src=URL.createObjectURL(file);
+  });
+}
+function renderThumbs(){
+  const box=$("pthumbs");
+  box.querySelectorAll(".pthumb").forEach(t=>t.remove());
+  photos.forEach((p,i)=>{
+    const d=document.createElement("div");
+    d.className="pthumb";
+    d.innerHTML='<img src="'+p+'" alt="booking photo"><span class="px" data-i="'+i+'">×</span>';
+    box.insertBefore(d,$("paddbtn"));
+  });
+  $("paddbtn").style.display=photos.length>=3?"none":"flex";
+  box.querySelectorAll(".px").forEach(x=>x.addEventListener("click",()=>{photos.splice(+x.dataset.i,1);renderThumbs();}));
 }
 
 let detailsOpen=false;
@@ -640,7 +719,10 @@ $("bookbtn").addEventListener("click",async()=>{
     notes:$("c-notes").value.trim()||"None"
   };
   btn.textContent="Sending…";
-  fetch(SHEET_API,{method:"POST",body:JSON.stringify(payload)}).catch(()=>{});
+  payload.photos_attached=photos.length?photos.length+" — links in the booking sheet":"None";
+  const sheetPayload=Object.assign({},payload,{photos:photos});
+  delete sheetPayload._subject;delete sheetPayload._autoresponse;
+  try{await fetch(SHEET_API,{method:"POST",body:JSON.stringify(sheetPayload)});}catch(e){}
   const sent=await sendBooking(payload);
   if(!sent){
     const body="New "+payload.type+"%0A%0A"+Object.entries(payload).filter(([k])=>k!=="_subject").map(([k,v])=>k+": "+v).join("%0A");
@@ -658,16 +740,12 @@ $("bookbtn").addEventListener("click",async()=>{
   $("tk-title").textContent=machineName().split(" /")[0]+" · "+payload.weight;
   $("tk-route").textContent=route;
   $("tk-ref").textContent="Ref "+ref;
-  saveJob({ref:ref,title:machineName().split(" /")[0]+" · "+payload.weight,route:route,price:lastQuote});
+  addJob({ref:ref,title:machineName().split(" /")[0]+" · "+payload.weight,route:route,price:lastQuote,status:"Received",date:new Date().toLocaleDateString("en-NZ",{day:"numeric",month:"short"}),ts:Date.now()});
   $("track-empty").style.display="none";
   $("track-live").style.display="block";
   stage=0;paintTrack();
-  const row=document.createElement("div");
-  row.className="jrow";
-  row.innerHTML='<div><h4>'+machineName().split(" /")[0]+' · '+route+'</h4><p>Today · '+lastQuote+' +GST · '+ref+'</p></div><span class="pill blue">Booked</span>';
-  $("jobs-list").prepend(row);
-  const jc=$("st-jobs");jc.textContent=+jc.textContent+1;
   btn.textContent="Booked";btn.style.background="#0F6E56";
+  photos=[];renderThumbs();
   setTimeout(()=>{quote();btn.textContent="Book transport";btn.style.background="";$("dform").classList.remove("show");detailsOpen=false;show("track");},900);
 });
 quote();
@@ -739,6 +817,7 @@ function renderAdm(d){
       '<p class="sub" style="margin-top:4px">'+(j.pickup||"").split(",")[0]+' → '+(j.dropoff||"").split(",")[0]+' · '+(j.price||"")+'</p>'+
       '<p class="sub" style="margin-top:2px">'+(j.name||"")+' · <a href="tel:'+(j.phone||"")+'" style="color:var(--red);text-decoration:none;font-weight:600">'+(j.phone||"")+'</a> · '+(j.date||"")+'</p>'+
       ((j.make&&j.make!=="Not specified")||(j.extras&&j.extras!=="None")||(j.notes&&j.notes!=="None")?'<p class="sub" style="margin-top:2px">'+[j.make!=="Not specified"?j.make:"",j.extras!=="None"?j.extras:"",j.notes!=="None"?j.notes:""].filter(Boolean).join(" · ")+'</p>':"")+
+      (j.photos&&j.photos.length?'<p class="sub" style="margin-top:2px"><i class="ti ti-photo" style="font-size:14px;vertical-align:-2px"></i> '+j.photos.map((u,i)=>'<a href="'+u+'" target="_blank" style="color:var(--red);font-weight:600;text-decoration:none">Photo '+(i+1)+'</a>').join(" · ")+'</p>':"")+
       '<div class="chips" style="margin-top:8px">'+chips+'</div>';
     $("adm-list").appendChild(card);
   });
